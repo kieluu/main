@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <div class="message">
+    <p>Kỷ niệm 1 năm yêu nhau</p>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+
+    .slideshow {
+      margin-top: 10px;
+      width: 90vw;
+      max-width: 400px;
+      height: 60vh;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: fade 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fade {
+      from { opacity: 0.85; }
+      to { opacity: 1; }
+    }
+
+    .heart {
+      font-size: 50px;
+      color: red;
+      animation: heartbeat 1s infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .petal {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: #ff4d6d;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="heart">❤️</div>
+
+  <div class="slideshow">
+    <img id="slideshow-image" src="" alt="Kỷ niệm" />
+  </div>
+
+  <div class="message">
+    <p>Hôm nay là tròn 1 năm mình bên nhau đấy Chip Bông💞</p>
+    <p>Cảm ơn em vì đã luôn ở đây. Dù có bao nhiêu năm nữa, mình vẫn sẽ nắm tay nhau như lúc này.</p>
+    <p>Yêu em nhiều lắm 💖</p>
+  </div>
+
+  <div class="audio">
+    <iframe width="0" height="0" src="https://drive.google.com/file/d/1BdL3vhXxDAwWle0LC4ywRHxOR42bE8KA/view?usp=sharing" 
+      frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  </div>
+<button class="surprise-button" onclick="goToSurprise()">🎁 BẤM ĐỂ NHẬN BẤT NGỜ 💝</button>
+  <script>
+    const images = [
+      "https://sf-static.upanhlaylink.com/img/image_202508012d126ded27a9894663a7173975b984c1.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_20250801c9dd2322dd90974b2c7eb6f29d4b1ef7.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_20250801352ac2b95a901820e831e888b1a81138.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_202508018a870693976d25624858350449ce012f.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_2025080129c98f2e0c9264cc16fe387a26cfe99e.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_2025080186f62bc863957bbf0ac3185963d810be.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_202508011bf93491f14f345f5b7b32858c181567.jpg",
+      "https://sf-static.upanhlaylink.com/img/image_20250801715aeef16448d9f26e3479562259d0da.jpg"
+      
+    ];
+function goToSurprise() {
+      window.open("https://www.youtube.com/watch?v=JgTZvDbaTtg", "_blank");
+    }
+    let current = 0;
+    const img = document.getElementById('slideshow-image');
+    img.src = images[current];
+
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      img.src = images[current];
+    }, 4000);
+
+    // Cánh hoa rơi
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      petal.innerHTML = '🌸';
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    setInterval(createPetal, 300);
+
+  </script>
+</body>
+</html>
